@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.authors  = {'Valerio Mazzeo' => 'valerio.mazzeo@gmail.com'}
   s.source   = { :git => 'https://github.com/valeriomazzeo/NSString-Emoji.git', :tag => 'v0.1' }
   s.platform = :ios
-  s.source_files = 'NSString+Emoji.h,m'
+  s.source_files = 'NSString+Emoji.{h,m}'
   s.requires_arc = true
   s.framework = 'UIKit'
 end
