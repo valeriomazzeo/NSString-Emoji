@@ -89,8 +89,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
                               @"💘": @":cupid:",
                               @"💖": @":sparkling_heart:",
                               @"✨": @":sparkles:",
-                              //@"⭐": @":star:",
-                              @"⭐️": @":star:",  // fixes extra char issue.
+                              @"⭐️": @":star:",
                               @"🌟": @":star2:",
                               @"💫": @":dizzy:",
                               @"💥": @":boom:",
