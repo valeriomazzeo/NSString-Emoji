@@ -17,9 +17,9 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
 {
     s_unicodeToCheatCodes = @{
                               @"😄": @":smile:",
-                              @"😆": @":laughing:",
+                              @"😆": @[@":D", @":laughing:"],
                               @"😊": @":blush:",
-                              @"😃": @":smiley:",
+                              @"😃": @[@":)", @":-)", @":smiley:"],
                               @"☺": @":relaxed:",
                               @"😏": @":smirk:",
                               @"😞": @":disappointed:",
@@ -30,7 +30,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
                               @"😥": @":relieved:",
                               @"😌": @":satisfied:",
                               @"😁": @":grin:",
-                              @"😉": @":wink:",
+                              @"😉": @[@";)", @":wink:"],
                               @"😜": @":wink2:",
                               @"😝": @":stuck_out_tongue_closed_eyes:",
                               @"😀": @":grinning:",
@@ -39,9 +39,9 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
                               @"😛": @":stuck_out_tongue:",
                               @"😴": @":sleeping:",
                               @"😟": @":worried:",
-                              @"😦": @":frowning:",
+                              @"😦": @[@":(", @":frowning:"],
                               @"😧": @":anguished:",
-                              @"😮": @":open_mouth:",
+                              @"😮": @[@":o", @":open_mouth:"],
                               @"😬": @":grimacing:",
                               @"😕": @":confused:",
                               @"😯": @":hushed:",
@@ -858,14 +858,6 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
             [reversedMap setObject:key forKey:obj];
         }
     }];
-    
-    // Some extra short cuts to handle
-    reversedMap[@":)"] = @"😃";
-    reversedMap[@":-)"] = @"😃";
-    reversedMap[@":D"] = @"😆";
-    reversedMap[@":("] = @"😦";
-    reversedMap[@";)"] = @"😉";
-    reversedMap[@":o"] = @"😮";
     
     s_cheatCodesToUnicode = reversedMap;
 }
