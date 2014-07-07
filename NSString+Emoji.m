@@ -862,7 +862,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
     s_cheatCodesToUnicode = reversedMap;
 }
 
-- (NSString *)stringByReplacingEmojiCheatCodesWithUnicode;
+- (NSString *)stringByReplacingEmojiCheatCodesWithUnicode
 {
     if (!s_unicodeToCheatCodes) {
         [NSString initializeEmojiCheatCodes];
