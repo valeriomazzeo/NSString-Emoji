@@ -861,7 +861,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
 
     @synchronized(self) {
         s_unicodeToCheatCodes = forwardMap;
-        s_cheatCodesToUnicode = reversedMap;
+        s_cheatCodesToUnicode = [reversedMap copy];
     }
 }
 
