@@ -1,6 +1,6 @@
 //
 //  NSString+Emoji.m
-//  
+//
 //
 //  Created by Valerio Mazzeo on 24/04/13.
 //  Copyright (c) 2013 Valerio Mazzeo. All rights reserved.
@@ -432,6 +432,7 @@
         @":inbox_tray:": @"📥",
         @":incoming_envelope:": @"📨",
         @":iphone:": @"📱",
+        @":izakaya_lantern:": @"🏮",
         @":jeans:": @"👖",
         @":key:": @"🔑",
         @":kimono:": @"👘",
@@ -858,12 +859,12 @@
         @":x:": @"❌",
         @":zero:": @"0⃣"
         };
-    
+
     __block NSString *text = self;
     [emojiCheatCodes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         text = [text stringByReplacingOccurrencesOfString:key withString:obj];
     }];
-    
+
     return text;
 }
 
@@ -1280,6 +1281,7 @@
         @"📥": @":inbox_tray:",
         @"📨": @":incoming_envelope:",
         @"📱": @":iphone:",
+        @"🏮": @":izakaya_lantern:",
         @"👖": @":jeans:",
         @"🔑": @":key:",
         @"👘": @":kimono:",
@@ -1698,12 +1700,12 @@
         @"❌": @":x:",
         @"0⃣": @":zero:"
         };
-    
+
     __block NSString *text = self;
     [emojiUnicodeChars enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         text = [text stringByReplacingOccurrencesOfString:key withString:obj];
     }];
-    
+
     return text;
 }
 
