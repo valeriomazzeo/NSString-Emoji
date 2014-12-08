@@ -1,4 +1,8 @@
 # NSString+Emoji
+[![Pod Version](http://img.shields.io/cocoapods/v/NSString+Emoji.svg?style=flat)]()
+[![Pod Platform](http://img.shields.io/cocoapods/p/NSString+Emoji.svg?style=flat)]()
+[![Pod License](http://img.shields.io/cocoapods/l/NSString+Emoji.svg?style=flat)](http://opensource.org/licenses/MIT)
+
 ## GETTING STARTED
 
 NSString (Emoji) extends the NSString class to provide custom functionality
