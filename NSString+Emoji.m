@@ -10,19 +10,34 @@
 
 @implementation NSString (Emoji)
 
+static NSDictionary * s_emoticonToUnicode = nil;
 static NSDictionary * s_unicodeToCheatCodes = nil;
 static NSDictionary * s_cheatCodesToUnicode = nil;
 
 + (void)initializeEmojiCheatCodes
 {
+    NSDictionary *emoticonMap = @{
+                                  @":D": @"😆",
+                                  @":-D": @"😆",
+                                  @":)": @"😃",
+                                  @":-)": @"😃",
+                                  @":(": @"😞",
+                                  @":-(": @"😞",
+                                  @";)": @"😉",
+                                  @";-)": @"😉",
+                                  @":P": @"😜",
+                                  @":-P": @"😜",
+                                  @":o": @"😮",
+                                  @":-o": @"😮",
+                                  };
     NSDictionary *forwardMap = @{
                                  @"😄": @":smile:",
-                                 @"😆": @[@":laughing:", @":D"],
+                                 @"😆": @":laughing:",
                                  @"😊": @":blush:",
-                                 @"😃": @[@":smiley:", @":)", @":-)"],
+                                 @"😃": @":smiley:",
                                  @"☺": @":relaxed:",
                                  @"😏": @":smirk:",
-                                 @"😞": @[@":disappointed:", @":("],
+                                 @"😞": @":disappointed:",
                                  @"😍": @":heart_eyes:",
                                  @"😘": @":kissing_heart:",
                                  @"😚": @":kissing_closed_eyes:",
@@ -30,8 +45,8 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
                                  @"😥": @":relieved:",
                                  @"😌": @":satisfied:",
                                  @"😁": @":grin:",
-                                 @"😉": @[@":wink:", @";)", @";-)"],
-                                 @"😜": @[@":wink2:", @":P"],
+                                 @"😉": @":wink:",
+                                 @"😜": @":wink2:",
                                  @"😝": @":stuck_out_tongue_closed_eyes:",
                                  @"😀": @":grinning:",
                                  @"😗": @":kissing:",
@@ -41,7 +56,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
                                  @"😟": @":worried:",
                                  @"😦": @":frowning:",
                                  @"😧": @":anguished:",
-                                 @"😮": @[@":open_mouth:", @":o"],
+                                 @"😮": @":open_mouth:",
                                  @"😬": @":grimacing:",
                                  @"😕": @":confused:",
                                  @"😯": @":hushed:",
@@ -862,6 +877,7 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
     @synchronized(self) {
         s_unicodeToCheatCodes = forwardMap;
         s_cheatCodesToUnicode = [reversedMap copy];
+        s_emoticonToUnicode = emoticonMap;
     }
 }
 
@@ -871,11 +887,19 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
         [NSString initializeEmojiCheatCodes];
     }
     
-    if ([self rangeOfString:@":"].location != NSNotFound) {
+    if ([self rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@":;"]].location != NSNotFound) {
         __block NSMutableString *newText = [NSMutableString stringWithString:self];
-        [s_cheatCodesToUnicode enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+
+        if ([self rangeOfString:@":"].location != NSNotFound) {
+            [s_cheatCodesToUnicode enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+                [newText replaceOccurrencesOfString:key withString:obj options:NSLiteralSearch range:NSMakeRange(0, newText.length)];
+            }];
+        }
+
+        [s_emoticonToUnicode enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
             [newText replaceOccurrencesOfString:key withString:obj options:NSLiteralSearch range:NSMakeRange(0, newText.length)];
         }];
+
         return newText;
     }
     
